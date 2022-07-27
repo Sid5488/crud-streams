@@ -1,0 +1,31 @@
+import { UserResource } from "../resources/userResource.mjs";
+
+class Routes {
+  #userResource = new UserResource();
+
+  #routes = {
+    "/api/users": {
+      "GET": this.#userResource.getAll(),
+    },
+    "/api/users/sign-in": {
+      "POST": () => {}
+    }
+  };
+
+  #identifierRoutes(route) {
+    const path = this.#routes[route.url];
+
+    if(!path || !`${path}/`)
+      return { message: "Page not found" };
+
+    return path[route.method];
+  }
+
+  router(request, response) {
+    const result = this.#identifierRoutes(request);
+
+    return response.end(JSON.stringify(result));
+  }
+}
+
+export { Routes };

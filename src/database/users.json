@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Guilherme Sousa",
+    "email": "gsousa@email.com",
+    "password": "password123",
+    "age": 20,
+    "birthDate": "2002-04-02"
+  },
+  {
+    "name": "Eduarda Machado",
+    "email": "emachado@email.com",
+    "password": "123password",
+    "age": 19,
+    "birthDate": "2002-10-09"
+  }
+]

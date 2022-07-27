@@ -1,0 +1,5 @@
+class UserRules {
+
+}
+
+export { UserRules };
