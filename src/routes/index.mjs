@@ -1,16 +1,24 @@
 import { UserResource } from "../resources/userResource.mjs";
 
 class Routes {
-  #userResource = new UserResource();
+  #userResource;
+  #routes;
+  
+  constructor(request, response) {
+    this.#userResource = new UserResource(request, response);
+    this.#configurationRoutes();
+  }
 
-  #routes = {
-    "/api/users": {
-      "GET": this.#userResource.getAll(),
-    },
-    "/api/users/sign-in": {
-      "POST": () => {}
-    }
-  };
+  #configurationRoutes() {
+    this.#routes = {
+      "/api/users": {
+        "GET": this.#userResource.getAll(),
+      },
+      "/api/users/sign-up": {
+        "POST": this.#userResource.signUp(),
+      }
+    };
+  }
 
   #identifierRoutes(route) {
     const path = this.#routes[route.url];

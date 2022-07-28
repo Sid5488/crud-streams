@@ -17,7 +17,7 @@ class Server {
 
     this.server = http.createServer((request, response) => {
       response.setHeader("Content-Type", "application/json");
-      new Routes().router(request, response);
+      new Routes(request, response).router(request, response);
     });
   }
 }
