@@ -24,9 +24,13 @@ class Repository {
       flag: "r" 
     }));
     
-    data.filter(result => result[objectToFind] === objectToFind[objectToFind])
+    if(!objectToFind) {
+      data.filter(result => result[objectToFind] === objectToFind[objectToFind])
+      
+      return data[0];
+    }
 
-    return data[0];
+    return undefined;
   }
 
   save(objToSave) {

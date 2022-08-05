@@ -12,10 +12,10 @@ class Routes {
   #configurationRoutes() {
     this.#routes = {
       "/api/users": {
-        "GET": this.#userResource.getAll(),
+        "GET": () => this.#userResource.getAll(),
       },
       "/api/users/sign-up": {
-        "POST": this.#userResource.signUp(),
+        "POST": () => this.#userResource.signUp(),
       }
     };
   }
@@ -26,7 +26,9 @@ class Routes {
     if(!path || !`${path}/`)
       return { message: "Page not found" };
 
-    return path[route.method];
+    const resourceMethod = path[route.method];
+
+    return resourceMethod();
   }
 
   router(request, response) {
