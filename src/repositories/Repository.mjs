@@ -34,7 +34,10 @@ class Repository {
   }
 
   save(objToSave) {
-    writeFileSync(this.#repositoryFile, JSON.stringify(objToSave));
+    const allUsers = Array.from(this.getAll());
+    allUsers.push(objToSave);
+
+    writeFileSync(this.#repositoryFile, JSON.stringify(allUsers));
   }
 }
 

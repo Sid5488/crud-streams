@@ -20,7 +20,7 @@ class Routes {
     };
   }
 
-  #identifierRoutes(route) {
+  async #identifierRoutes(route) {
     const path = this.#routes[route.url];
 
     if(!path || !`${path}/`)
@@ -28,11 +28,11 @@ class Routes {
 
     const resourceMethod = path[route.method];
 
-    return resourceMethod();
+    return await resourceMethod();
   }
 
-  router(request, response) {
-    const result = this.#identifierRoutes(request);
+  async router(request, response) {
+    const result = await this.#identifierRoutes(request);
 
     return response.end(JSON.stringify(result));
   }

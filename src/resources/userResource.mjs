@@ -7,11 +7,9 @@ class UserResource {
   #rules = new UserRules();
 
   #request;
-  #response;
 
-  constructor(request, response) {
+  constructor(request) {
     this.#request = request;
-    this.#response = response;
   }
 
   getAll() {
@@ -25,9 +23,9 @@ class UserResource {
 
     const result = this.#rules.signUp(user);
 
-    if(typeof result === 'undefined') return JSON.stringify(user);
+    if(typeof result === 'undefined') return user;
 
-    return JSON.stringify({ message: result });
+    return { message: result };
   }
 }
 
