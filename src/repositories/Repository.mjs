@@ -19,18 +19,24 @@ class Repository {
   }
 
   getOne(objectToFind) {
+    if(!objectToFind) {
+      throw new Error("Please send some data to get user");
+    }
+
     const data = JSON.parse(readFileSync(this.#repositoryFile, { 
       encoding: "utf-8", 
       flag: "r" 
     }));
     
-    if(!objectToFind) {
-      data.filter(result => result[objectToFind] === objectToFind[objectToFind])
-      
-      return data[0];
-    }
+    const user = data.filter(result => {
+      const key = Object.keys(objectToFind);
 
-    return undefined;
+      if(result[key] === objectToFind[key]) {
+        return result[key];
+      }
+    });
+    
+    return user[0];
   }
 
   save(objToSave) {

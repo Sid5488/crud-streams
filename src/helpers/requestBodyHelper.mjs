@@ -1,3 +1,7 @@
+/**
+ * @param {HttpRequest} request 
+ * @returns request body sent;
+ */
 const readRequest = async (request) => {
   let body = '';
 
