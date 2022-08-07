@@ -18,8 +18,8 @@ class Repository {
     return data;
   }
 
-  getOne(objectToFind) {
-    if(!objectToFind) {
+  getOne(model) {
+    if(!model) {
       throw new Error("Please send some data to get user");
     }
 
@@ -29,9 +29,9 @@ class Repository {
     }));
     
     const user = data.filter(result => {
-      const key = Object.keys(objectToFind);
+      const key = Object.keys(model);
 
-      if(result[key] === objectToFind[key]) {
+      if(result[key] === model[key]) {
         return result[key];
       }
     });
@@ -39,11 +39,27 @@ class Repository {
     return user[0];
   }
 
-  save(objToSave) {
+  save(model) {
     const allUsers = Array.from(this.getAll());
-    allUsers.push(objToSave);
+    allUsers.push(model);
 
     writeFileSync(this.#repositoryFile, JSON.stringify(allUsers));
+  }
+
+  update(model) {
+    const allUsers = Array.from(this.getAll());
+    
+    const userList = allUsers.map(user => {
+      if(model.id === user.id) {
+        return model;
+      } 
+      
+      return user;
+    });
+
+    console.log("userList:", userList);
+
+    // writeFileSync(this.#repositoryFile, JSON.stringify(userList));
   }
 }
 

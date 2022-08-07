@@ -35,6 +35,10 @@ class UserResource {
 
     return { message: "Log In", status: 200 };
   }
+
+  update() {
+    console.log("request:", this.#request);
+  }
 }
 
 export { UserResource };

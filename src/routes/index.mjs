@@ -22,6 +22,9 @@ class Routes {
       },
       "/api/users/log-in": {
         "POST": () => this.#userResource.login(),
+      },
+      "/api/users/{id}": {
+        "PUT": () => this.#userResource.update(),
       }
     };
   }
@@ -32,10 +35,10 @@ class Routes {
    * @returns the values from method requested.
   */
   async #identifierRoutes(route) {
-    const path = this.#routes[route.url];
+    const [path] = this.#routes[route.url];
 
     if(!path || !`${path}/`)
-      return { message: "Page not found" };
+      return { message: "Page not found", status: 404 };
 
     const resourceMethod = path[route.method];
 
@@ -45,10 +48,15 @@ class Routes {
   async router(request, response) {
     const result = await this.#identifierRoutes(request);
 
-    response.statusCode = result.status;
-    delete result.status;
-
-    return response.end(JSON.stringify(result));
+    if(result !== undefined) {
+      response.statusCode = result.status;
+      delete result.status;
+      
+      return response.end(JSON.stringify(result));
+    } else {
+      response.statusCode = 500;
+      return response.end({ message: "Internal server error." });
+    }
   }
 }
 
