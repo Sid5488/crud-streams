@@ -15,7 +15,7 @@ class UserResource {
   getAll() {
     const users = this.#repository.getAll();
 
-    return users;
+    return { result: users, status: 200 };
   }
 
   async signUp() {
