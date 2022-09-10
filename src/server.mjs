@@ -6,8 +6,11 @@ class Server {
   hostname;
   server;
   port;
+  env;
 
   constructor() {
+    this.env = "DEVELOPMENT";
+
     this.configuration();
   }
 
