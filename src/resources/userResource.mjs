@@ -12,10 +12,12 @@ class UserResource {
     this.#request = request;
   }
 
-  getAll() {
-    const users = this.#repository.getAll();
+  getAll(request, response) {
+    console.log("getAll", request);
 
-    return { result: users, status: 200 };
+    // const users = this.#repository.getAll();
+
+    // return { result: users, status: 200 };
   }
 
   async signUp() {
