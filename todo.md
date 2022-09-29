@@ -1,7 +1,11 @@
 # We will doing...
 
   - [x] Create structure for project;
-  - [ ] Generate id for data registered;
+  - [x] Generate id for data registered;
+  - [x] Create a method to identifier routes;
+  - [x] Create a method to identifier Http method;
+  - [x] Create a method to get data from request body or query params;
+  - [x] Create a class to init server;
 
   ## Security methods
   - [x] Create a helper to create hash;
