@@ -1,7 +1,5 @@
-import { Router } from "../lib/route.mjs";
-import { Server } from "../lib/server.mjs";
+import { Server } from "../lib/src/server.mjs";
 
-import { UserResource } from "./resources/userResource.mjs";
 import { Routes } from "./routes/index.mjs";
 
 class Application {
@@ -23,13 +21,7 @@ class Application {
   }
 
   routes() {
-    const router = new Router();
-    router.addRoute({ 
-      path: '/api/users/create-account', 
-      httpMethod: 'POST', 
-      method: () => new UserResource().getAll(),
-    });
-    // new Routes(request, response).router(request, response);
+    Routes.routes();
   }
 }
 
