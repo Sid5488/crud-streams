@@ -9,7 +9,7 @@ class Server {
   env;
 
   constructor() {
-    this.env = "PRODUCTION::";
+    this.env = "PRODUCTION";
 
     this.configuration();
   }
