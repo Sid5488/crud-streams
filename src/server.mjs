@@ -6,7 +6,7 @@ class Application {
   env;
 
   constructor() {
-    this.env = "DEVELOPMENT";
+    this.env = "PRODUCTION";
   }
 
   configuration(port, hostname, message) {
