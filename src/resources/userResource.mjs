@@ -1,4 +1,4 @@
-import { readRequest } from "../helpers/requestBodyHelper.mjs";
+// import { readRequest } from "../helpers/requestBodyHelper.mjs";
 import { Repository } from "../repositories/Repository.mjs";
 import { UserRules } from "../rules/userRules.mjs";
 
@@ -6,38 +6,42 @@ class UserResource {
   #repository = new Repository("users.json");
   #rules = new UserRules();
 
-  #request;
-
-  constructor(request) {
-    this.#request = request;
-  }
-
-  getAll() {
+  getAll(request, response) {
     const users = this.#repository.getAll();
 
-    return { result: users, status: 200 };
+    response.statusCode = 200;
+    return response.end(JSON.stringify({ result: users }));
   }
 
-  async signUp() {
-    const user = await readRequest(this.#request);
+  async createAccount(request, response) {
+    const user = request.body;
     const result = this.#rules.signUp(user);
 
-    if(typeof result === 'string') return { error: user, status: 400 };
+    if(typeof result === 'string') {
+      response.statusCode = 400;
 
-    return { result: user, status: 201 };
+      return response.end(JSON.stringify({ error: result }));
+    }
+
+    response.statusCode = 201;
+    return response.end(JSON.stringify({ result: user }));
   }
 
-  async login() {
-    const requestBody = await readRequest(this.#request);
+  async login(request, response) {
+    const requestBody = request.body;
     const logIn = this.#rules.login(requestBody);
 
-    if(typeof logIn === 'string') return { error: logIn, status: 400 };
+    if(typeof logIn === 'string') {
+      response.statusCode = 400;
 
-    return { message: "Log In", status: 200 };
+      return response.end(JSON.stringify({ error: logIn }));
+    }
+
+    return response.end(JSON.stringify({ message: "Log in" }));
   }
 
-  update() {
-    console.log("request:", this.#request);
+  update(request, response) {
+    console.log("request:", request);
   }
 }
 
