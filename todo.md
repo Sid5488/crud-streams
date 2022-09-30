@@ -1,25 +1,28 @@
-# We will doing...
+# We will doing
 
-  - [x] Create structure for project;
-  - [x] Generate id for data registered;
-  - [x] Create a method to identifier routes;
-  - [x] Create a method to identifier Http method;
-  - [x] Create a method to get data from request body or query params;
-  - [x] Create a class to init server;
+- [x] Create structure for project;
+- [x] Generate id for data registered;
+- [x] Create a method to identifier routes;
+- [x] Create a method to identifier Http method;
+- [x] Create a method to get data from request body or query params;
+- [x] Create a class to init server;
 
-  ## Security methods
-  - [x] Create a helper to create hash;
+## Security methods
 
-  ## Task to entity user
-  - [ ] Create CRUD for user;
-    - [x] Create method sign-up(create user);
-    - [ ] Create method update;
-    - [ ] Create method delete;
-    - [x] Create method list(read user or user list);
+- [x] Create a helper to create hash;
 
-  - [ ] Create method login; 
+## Task to entity user
 
-# And now task to you do!
+- [ ] Create CRUD for user;
+  - [x] Create method sign-up(create user);
+  - [ ] Create method update;
+  - [ ] Create method delete;
+  - [x] Create method list(read user or user list);
+
+- [ ] Create method login;
+
+## And now task to you do
+
 - [ ] Implement JWT(Json Web Token), to save data of user how: id;
   - [ ] Use token generated at login to identify the user;
   - [ ] Verify if user has permission to execute the method requested by token;
