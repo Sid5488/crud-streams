@@ -8,10 +8,18 @@ class UserModel extends BaseModel {
   birthDate;
 
   constructor({ name, email, password, age, birthDate }) {
-    if((name === undefined || name === "" || name === null) 
-      || (email === undefined || email === "" ||email === null) 
-      || (password === undefined || password === "" || password === null)) {
-        throw new Error("UserModel is required values: name, emai and password");
+    if (
+      name === undefined ||
+      name === "" ||
+      name === null ||
+      email === undefined ||
+      email === "" ||
+      email === null ||
+      password === undefined ||
+      password === "" ||
+      password === null
+    ) {
+      throw new Error("UserModel is required values: name, emai and password");
     }
 
     super();
@@ -34,7 +42,7 @@ class UserModel extends BaseModel {
   set email(email) {
     this.email = email;
   }
-  
+
   get email() {
     return this.email;
   }
@@ -62,6 +70,6 @@ class UserModel extends BaseModel {
   get birthDate() {
     return this.birthDate;
   }
-};
+}
 
 export { UserModel };
