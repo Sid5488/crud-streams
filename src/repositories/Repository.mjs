@@ -9,8 +9,6 @@ class Repository {
   constructor(filename) {
     this.#repositoryFile = join(
       __dirname,
-      "..",
-      "..",
       "src",
       "database",
       filename

@@ -1,0 +1,37 @@
+# Method to create an account in platform
+
+POST http://127.0.0.1:3333/api/users/create-account HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Your Name",
+  "email": "your.email@example.com",
+  "password": "your_password",
+}
+
+###
+
+# Method to login in platform
+POST http://127.0.0.1:3333/api/users/log-in HTTP/1.1
+content-type: application/json
+
+{
+  "email": "your.email@example.com",
+  "password": "your_password"
+}
+
+###
+
+# Method to list all users in platform
+GET http://127.0.0.1:3333/api/users HTTP/1.1
+content-type: application/json
+
+###
+
+# Method to update user
+PUT http://127.0.0.1:3333/api/users/10d00b10-5027-4a26-abb6-ddc580921baf HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Emerson Ribeiro Atualizado"
+}
