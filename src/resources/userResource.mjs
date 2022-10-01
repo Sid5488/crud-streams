@@ -7,9 +7,10 @@ class UserResource {
   #rules = new UserRules();
 
   getAll(request, response) {
-    const users = this.#repository.getAll();
+    // const users = this.#repository.getAll();
 
-    response.statusCode = 200;
+    // response.statusCode = 200;
+    const users = { name: "teste" };
     return response.end(JSON.stringify({ result: users }));
   }
 
@@ -17,7 +18,7 @@ class UserResource {
     const user = request.body;
     const result = this.#rules.signUp(user);
 
-    if(typeof result === 'string') {
+    if (typeof result === "string") {
       response.statusCode = 400;
 
       return response.end(JSON.stringify({ error: result }));
@@ -31,7 +32,7 @@ class UserResource {
     const requestBody = request.body;
     const logIn = this.#rules.login(requestBody);
 
-    if(typeof logIn === 'string') {
+    if (typeof logIn === "string") {
       response.statusCode = 400;
 
       return response.end(JSON.stringify({ error: logIn }));
@@ -41,7 +42,7 @@ class UserResource {
   }
 
   update(request, response) {
-    console.log("request:", request);
+    return response.end(JSON.stringify({ message: "OK" }));
   }
 }
 

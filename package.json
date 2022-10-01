@@ -5,6 +5,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "node ."
+    "start": "nodemon ."
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
