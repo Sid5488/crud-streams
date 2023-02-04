@@ -67,9 +67,7 @@ class Repository {
       return user;
     });
 
-    console.log("userList:", userList);
-
-    // writeFileSync(this.#repositoryFile, JSON.stringify(userList));
+    writeFileSync(this.#repositoryFile, JSON.stringify(userList));
   }
 }
 
