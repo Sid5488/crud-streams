@@ -15,7 +15,7 @@
 
 - [ ] Create CRUD for user;
   - [x] Create method sign-up(create user);
-  - [ ] Create method update;
+  - [x] Create method update;
   - [ ] Create method delete;
   - [x] Create method list(read user or user list);
 

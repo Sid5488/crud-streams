@@ -1,4 +1,3 @@
-// import { readRequest } from "../helpers/requestBodyHelper.mjs";
 import { Repository } from "../repositories/Repository.mjs";
 import { UserRules } from "../rules/userRules.mjs";
 
@@ -41,7 +40,19 @@ class UserResource {
   }
 
   update(request, response) {
-    console.log("request:", request);
+    const query = request.query;
+    const dataToUpdate = request.body;
+
+    const result = this.#rules.update(query.id, dataToUpdate);
+
+    if (typeof result === 'string') {
+      response.statusCode = 400;
+
+      return response.end(JSON.stringify({ error: result }));
+    }
+
+    response.statusCode = 200;
+    return response.end(JSON.stringify({ message: 'Ok' }));
   }
 }
 

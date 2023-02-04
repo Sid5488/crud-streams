@@ -9,8 +9,6 @@ class Repository {
   constructor(filename) {
     this.#repositoryFile = join(
       __dirname,
-      "..",
-      "..",
       "src",
       "database",
       filename
@@ -69,9 +67,7 @@ class Repository {
       return user;
     });
 
-    console.log("userList:", userList);
-
-    // writeFileSync(this.#repositoryFile, JSON.stringify(userList));
+    writeFileSync(this.#repositoryFile, JSON.stringify(userList));
   }
 }
 

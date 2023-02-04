@@ -33,7 +33,7 @@ class UserRules {
       return "Email/password is wrong!";
   }
 
-  update(id, data) { 
+  update(id, data) {
     const userExists = this.#repository.getOne({
       id: id
     });
@@ -46,9 +46,7 @@ class UserRules {
       ...data
     };
 
-    const user = new UserModel({ ...subscribingData });
-
-    this.#repository.update(user);
+    this.#repository.update(subscribingData);
   }
 }
 

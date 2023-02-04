@@ -27,7 +27,7 @@ class Routes {
     });
 
     Router.addRoute({
-      path: "/api/users/{id}",
+      path: "/api/users",
       httpMethod: "PUT",
       method: (request, response) =>
         Routes.#userResource.update(request, response),
