@@ -41,7 +41,7 @@ class UserResource {
   }
 
   update(request, response) {
-    console.log("request:", request);
+    return response.end(JSON.stringify({ message: 'Ok' }));
   }
 }
 
