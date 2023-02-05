@@ -32,6 +32,13 @@ class Routes {
       method: (request, response) =>
         Routes.#userResource.update(request, response),
     });
+
+    Router.addRoute({
+      path: "/api/users",
+      httpMethod: "DELETE",
+      method: (request, response) =>
+        Routes.#userResource.delete(request, response)
+    })
   }
 }
 

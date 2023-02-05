@@ -10,8 +10,7 @@ class UserRules {
       email: user.email
     });
 
-    if(emailAlreadyInUse)
-      return "Email already in use";
+    if(emailAlreadyInUse) return "Email already in use";
 
     user.password = stringToHash(user.password, "md5", "mine_password", "hex");
     const model = new UserModel({ ...user });
@@ -24,22 +23,19 @@ class UserRules {
       email: user.email
     });
 
-    if(!userExists)
-      return "Email/password is wrong!";
+    if(!userExists) return "Email/password is wrong!";
 
     const password = stringToHash(user.password, "md5", "mine_password", "hex");
     
-    if(password !== userExists.password)
-      return "Email/password is wrong!";
+    if(password !== userExists.password) return "Email/password is wrong!";
   }
 
   update(id, data) {
     const userExists = this.#repository.getOne({
-      id: id
+      id
     });
 
-    if(!userExists)
-      return "User not found!";
+    if(!userExists) return "User not found!";
 
     const subscribingData = {
       ...userExists,
@@ -47,6 +43,16 @@ class UserRules {
     };
 
     this.#repository.update(subscribingData);
+  }
+
+  delete(id) {
+    const userExists = this.#repository.getOne({
+      id
+    });
+
+    if(!userExists) return "User not found!";
+
+    this.#repository.delete(id);
   }
 }
 

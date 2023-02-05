@@ -40,10 +40,10 @@ class UserResource {
   }
 
   update(request, response) {
-    const query = request.query;
-    const dataToUpdate = request.body;
+    const { id } = request.query;
+    const body = request.body;
 
-    const result = this.#rules.update(query.id, dataToUpdate);
+    const result = this.#rules.update(id, body);
 
     if (typeof result === 'string') {
       response.statusCode = 400;
@@ -52,7 +52,22 @@ class UserResource {
     }
 
     response.statusCode = 200;
-    return response.end(JSON.stringify({ message: 'Ok' }));
+    return response.end(JSON.stringify({ message: 'Updated' }));
+  }
+
+  delete(request, response) {
+    const { id } = request.query;
+
+    const result = this.#rules.delete(id);
+
+    if(typeof result === 'string') {
+      response.statusCode = 400;
+
+      return response.end(JSON.stringify({ error: result }));
+    }
+
+    response.statusCode = 204;
+    return response.end(JSON.stringify({ message: 'Deleted' }));
   }
 }
 

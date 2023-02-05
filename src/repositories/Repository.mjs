@@ -7,12 +7,21 @@ class Repository {
   #repositoryFile;
 
   constructor(filename) {
-    this.#repositoryFile = join(
-      __dirname,
-      "src",
-      "database",
-      filename
-    );
+    if (process.platform === "linux") {
+      this.#repositoryFile = join(
+        __dirname,
+        "../",
+        "database",
+        filename
+      );
+    } else {
+      this.#repositoryFile = join(
+        __dirname,
+        "src",
+        "database",
+        filename
+      );
+    }
   }
 
   getAll() {
@@ -28,7 +37,7 @@ class Repository {
 
   getOne(model) {
     if (!model) {
-      throw new Error("Please send some data to get user");
+      throw new Error("Please send some data to get");
     }
 
     const data = JSON.parse(
@@ -38,7 +47,7 @@ class Repository {
       })
     );
 
-    const user = data.filter((result) => {
+    const datas = data.filter((result) => {
       const key = Object.keys(model);
 
       if (result[key] === model[key]) {
@@ -46,20 +55,20 @@ class Repository {
       }
     });
 
-    return user[0];
+    return datas[0];
   }
 
   save(model) {
-    const allUsers = Array.from(this.getAll());
-    allUsers.push(model);
+    const data = Array.from(this.getAll());
+    data.push(model);
 
-    writeFileSync(this.#repositoryFile, JSON.stringify(allUsers));
+    writeFileSync(this.#repositoryFile, JSON.stringify(data));
   }
 
   update(model) {
-    const allUsers = Array.from(this.getAll());
+    const data = Array.from(this.getAll());
 
-    const userList = allUsers.map((user) => {
+    const dataList = data.map((user) => {
       if (model.id === user.id) {
         return model;
       }
@@ -67,7 +76,17 @@ class Repository {
       return user;
     });
 
-    writeFileSync(this.#repositoryFile, JSON.stringify(userList));
+    writeFileSync(this.#repositoryFile, JSON.stringify(dataList));
+  }
+
+  delete(id) {
+    const data = Array.from(this.getAll());
+
+    const dataList = data.map((user) => {
+      if (id !== user.id) return user;
+    });
+
+    writeFileSync(this.#repositoryFile, JSON.stringify(dataList));
   }
 }
 
