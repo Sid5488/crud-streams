@@ -13,10 +13,10 @@
 
 ## Task to entity user
 
-- [ ] Create CRUD for user;
+- [x] Create CRUD for user;
   - [x] Create method sign-up(create user);
   - [x] Create method update;
-  - [ ] Create method delete;
+  - [x] Create method delete;
   - [x] Create method list(read user or user list);
 
 - [ ] Create method login;
