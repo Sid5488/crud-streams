@@ -19,7 +19,7 @@
   - [x] Create method delete;
   - [x] Create method list(read user or user list);
 
-- [ ] Create method login;
+- [x] Create method login;
 
 ## And now task to you do
 
