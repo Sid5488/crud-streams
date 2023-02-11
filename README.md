@@ -9,4 +9,4 @@
 ## How to run?
 
   : Run command line
-  `yarn start`, `npm run start`, `npx start` or `node .`
+  `yarn start`, `npm run start` or `node .`
