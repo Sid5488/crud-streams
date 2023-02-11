@@ -73,9 +73,8 @@ class Repository {
     const datas = data.filter((result) => {
       const key = Object.keys(model);
 
-      if (result[key] === model[key]) {
-        return result[key];
-      }
+      if (result !== null && result !== undefined)
+        if (result[key] === model[key]) return result[key];
     });
 
     return datas[0];
@@ -95,14 +94,14 @@ class Repository {
   /**
    * Method to update data on selected model.
    * @param {any} model
+   * @param {string} updateByKey
   */
-  update(model) {
+  update(model, updateByKey) {
     const data = Array.from(this.getAll());
 
     const dataList = data.map((item) => {
-      if (model.id === item.id) {
+      if (item !== null && model.id === item[updateByKey])
         return model;
-      }
 
       return item;
     });
@@ -113,11 +112,14 @@ class Repository {
   /**
    * Method to delete data on selected model.
    * @param {any} id
+   * @param {string} deleteByKey
   */
-  delete(id) {
+  delete(id, deleteByKey) {
     const data = Array.from(this.getAll());
 
-    const dataList = data.filter((item) => id !== item.id);
+    const dataList = data.filter(
+      (item) => item !== null && id !== item[deleteByKey]
+    );
 
     writeFileSync(this.#repositoryFile, JSON.stringify(dataList));
   }

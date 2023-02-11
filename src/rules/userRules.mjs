@@ -42,7 +42,7 @@ class UserRules {
       ...data
     };
 
-    this.#repository.update(subscribingData);
+    this.#repository.update(subscribingData, 'id');
   }
 
   delete(id) {
@@ -52,8 +52,9 @@ class UserRules {
 
     if(!userExists) return "User not found!";
 
-    this.#repository.delete(id);
+    this.#repository.delete(id, 'id');
   }
 }
 
 export { UserRules };
+
